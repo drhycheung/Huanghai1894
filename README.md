@@ -39,4 +39,17 @@ Huanghai1894/
 ├── 00-海面上，一支烟柱指向分岔.md  至  16-名册翻到最后.md   正文各章
 ├── 17-一个没坐上龙椅的孩子.md     尾声：溥仪的另一种命运
 ├── index.html                    网页阅读器（已部署至 GitHub Pages）
+└── scripts/build_reader.py       阅读器生成脚本（可复用于其他仓库）
 ```
+
+### 复用阅读器
+
+`scripts/build_reader.py` 可从任意"编号 Markdown 章节"仓库生成同款阅读器，无需修改代码：
+
+```bash
+python3 scripts/build_reader.py <章节目录> --title 书名 --subtitle "副标题"
+```
+
+- 章节文件需命名为 `[0-9][0-9]-*.md`（如 `00-楔子.md`）；`00` 自动显示为"楔子"，最大编号显示为"尾声"，其余为"第N章"。
+- `--title` 会写入侧栏书名、页面标题，并作为阅读进度/字号/明暗的 localStorage 前缀，多个阅读器同域部署时互不串档。
+- 默认输出到章节目录下的 `index.html`，可用 `--out` 指定路径。
